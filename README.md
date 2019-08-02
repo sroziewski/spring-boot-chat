@@ -19,7 +19,7 @@ Afterwards, visit the address in your browser and enjoy
 
 ```http://localhost:8080/index.xhtml```
 
-## Hints
+## One-liner
 
 You can clone the github repository to the *current_directory/spring-boot-chat*, create package and test, build a docker image and run it. Finally, visit the project WebApp location via *google-chrome*
      
