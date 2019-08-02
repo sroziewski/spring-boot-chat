@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<!-- For Bootstrap responsive grid -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+	</h:head>
+
+	<h:body>
+
+		<h:form id="form">
+
+			<div class="col-md-6">
+				<div class="row" style="margin-left: 230pt;">
+					<div class="col">
+
+						<p:panel header="Form" styleClass="form-horizontal">
+							<div class="form-group">
+								<p:outputLabel value="Nickname" for="nickname" styleClass="col-sm-3 control-label" />
+								<div class="col-sm-9">
+									<p:inputText id="nickname" value="#{formBean.nickname}" pt:placeholder="Input your nickname" required="true">
+										<f:validateLength minimum="2" />
+									</p:inputText>
+									<p:messages for="nickname" />
+								</div>
+
+								<p:outputLabel value="Message" for="message" styleClass="col-sm-3 control-label" />
+								<div class="col-sm-9">
+									<p:inputText id="message" value="#{formBean.message}" pt:placeholder="Input your message" required="true">
+										<f:validateLength minimum="2" />
+									</p:inputText>
+									<p:messages for="message" />
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<p:commandButton value="Submit" action="#{formController.submit}" ajax="true"
+													 icon="fa fa-save" oncomplete="updateChatbox();updateAdvices();" update="form"/>
+								</div>
+							</div>
+
+						</p:panel>
+						</div>
+
+							<div class="col">
+								<p:messages globalOnly="true" >
+								</p:messages>
+							</div>
+						<div class="col">
+							<p:dataList value="#{formBean.foundMessages}" id="advices" var="value" type="ordered">
+								#{value}
+							</p:dataList>
+						</div>
+
+					</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row">
+							<p:panel header="Submitted values" id="chatbox">
+								<p:dataList value="#{formBean.submittedValues}" var="value" widgetVar="chatbox">
+									(#{value.key}): #{value.value}
+								</p:dataList>
+								<p:poll interval="3" update="chatbox" />
+							</p:panel>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p:remoteCommand update="chatbox" name="updateChatbox"/>
+			<p:remoteCommand update="advices" name="updateAdvices"/>
+		</h:form>
+	</h:body>
+
+	</html>
