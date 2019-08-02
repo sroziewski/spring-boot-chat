@@ -1,5 +1,5 @@
 # Demo JMS Spring Boot Chat in Docker
-Demo WebApp working with JMS API Apache ActiveMQ 5.15 working on Spring Boot 2  SpringFramework 5 and Primefaces 7
+Demo WebApp working with JMS API Apache ActiveMQ 5.15 working on Spring Boot 2, SpringFramework 5 and Primefaces 7
 
 ## Instructions
 
